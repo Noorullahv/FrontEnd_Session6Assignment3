@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Assignment 6.3</title>
+
+		<script type="text/javascript">
+			
+			var findMaxSequence = "3,2,3,4,2,2,4";
+			var len = findMaxSequence.length;
+
+			var nSlNo = 1;
+			var sStr;
+			var nCurrentNo;
+			var nPreviousNo;
+
+			var nInnerSlNo;
+			var sInnerStr;
+			var nInnerCurrentNo;
+			var nInnerPreviousNo;
+
+			var nPreSequenceCount = 1;
+			var nCurSequenceCount = 1;
+
+			var nStartingPoint = 0
+			for (nSlNo; nSlNo <= len; nSlNo++){
+
+
+				if(nSlNo==1){
+					nStartingPoint = nSlNo
+					nSequenceCount = 1;
+				}
+
+
+				if(nSlNo!=1){
+					sStr = findMaxSequence.substring(nSlNo,nSlNo-1);
+					if(sStr!=","){
+						nCurrentNo = findMaxSequence.substring(nSlNo,nSlNo-1);
+						nPreviousNo = findMaxSequence.substring(nSlNo-2,nSlNo-3);
+
+						if(nPreviousNo > nCurrentNo){
+
+							if (nPreSequenceCount > 1){
+
+								nInnerSlNo = nSlNo;
+
+								for(nInnerSlNo; nInnerSlNo<= len; nInnerSlNo++)	{
+
+									sInnerStr = findMaxSequence.substring(nInnerSlNo, nInnerSlNo-1);
+
+									if(sInnerStr!=","){
+										nInnerCurrentNo = findMaxSequence.substring(nInnerSlNo, nInnerSlNo-1);
+										nInnerPreviousNo = findMaxSequence.substring(nInnerSlNo-2, nInnerSlNo-3);
+
+										if(nInnerPreviousNo > nInnerCurrentNo){
+
+										}
+										else{
+											nCurSequenceCount = nCurSequenceCount + 1;
+										}
+									}
+
+								}
+							}	
+							else{
+								nStartingPoint = nSlNo;
+							}
+						}
+						else{
+							nPreSequenceCount = nPreSequenceCount + 1;
+						}
+
+					}
+				}
+				
+			}
+			alert(nPreSequenceCount);
+			alert(nCurSequenceCount);
+
+			nStartingPoint = nStartingPoint - 1;
+			nPreSequenceCount = nStartingPoint + nPreSequenceCount;
+			//console.log(findMaxSequence.substring(nStartingPoint,nPreSequenceCount));
+			console.log(findMaxSequence.substring(2,5));
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
